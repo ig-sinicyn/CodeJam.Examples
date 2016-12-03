@@ -1,0 +1,7 @@
+# ensure CRLF endings on all checkouts
+*.cs        eol=crlf
+*.tt        eol=crlf
+*.ttinclude eol=crlf
+*.csproj    eol=crlf
+*.cmd       eol=crlf
+*.sln       eol=crlf

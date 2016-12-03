@@ -1,0 +1,39 @@
+version: 0.0.{build}
+configuration: Release
+image: Visual Studio 2017 RC
+
+environment:
+  packageVersion: 0.0
+
+cache:
+- packages -> **\packages.config
+
+init:
+- cmd: git config --global core.autocrlf true
+- ps: $env:buildVersion = "$env:packageVersion.$env:appveyor_build_number"
+- ps: $env:nugetVersion = "$env:packageVersion-alpha$env:appveyor_build_number"
+- ps: Update-AppveyorBuild -Version $env:buildVersion
+
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '$(buildVersion)'
+  assembly_file_version: '$(buildVersion)'
+  assembly_informational_version: '$(nugetVersion)'
+
+nuget:
+  account_feed: false
+  project_feed: false
+
+before_build:
+- cmd: nuget restore CodeJam.Examples.sln
+
+build:
+  project: CodeJam.Examples.sln
+  publish_nuget: false
+  verbosity: minimal
+
+# artifacts for perftests
+on_finish:
+  - ps: Get-ChildItem *.csv -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+  - ps: Get-ChildItem *.PerfTests.log -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
