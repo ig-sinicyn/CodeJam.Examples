@@ -30,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CodeJam, Version=1.1.0.0, Culture=neutral, PublicKeyToken=7662d8fd5b220919, processorArchitecture=MSIL">
