@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{934370BC-0143-46FB-B9F7-DE18AB3C9B55}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>CodeJam.Examples</RootNamespace>
+    <RootNamespace>CodeJam.Examples.PerfTests</RootNamespace>
     <AssemblyName>CodeJam.Examples.PerfTests</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -74,8 +74,10 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PerfTests.Tutorial\0.Implementations\ByteArrayEquality.cs" />
-    <Compile Include="PerfTests\SimplePerfTest.cs" />
+    <Compile Include="Tutorial\0. Preparation\ByteArrayEquality.cs" />
+    <Compile Include="Tutorial\0. Preparation\ByteArrayEqualityTest.cs" />
+    <Compile Include="Tutorial\2. Writing the PerfTest\ByteArrayEqualityPerfTest.cs" />
+    <Compile Include="Tutorial\1. Setup the environment\SimplePerfTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -3,9 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices;
-using System.Text;
-
-using NUnit.Framework;
 
 // PREREQUISITES:
 // * Reference to https://www.nuget.org/packages/System.Numerics.Vectors
@@ -15,102 +12,6 @@ using NUnit.Framework;
 
 namespace CodeJam.Examples.PerfTests.Tutorial
 {
-	public static class ByteArrayEqualityTest
-	{
-		public static ulong[] ToUInt64Array(byte[] bytes)
-		{
-			var result = new ulong[(bytes.Length + 7) / 8];
-			for (int i = 0; i < result.Length; i++)
-			{
-				result[i] = BitConverter.ToUInt64(bytes, i * 8);
-			}
-			return result;
-		}
-
-		// 1024 bit keys
-		private const int UnicodeLength = 1024 / 8 / 2; // 1024 bit keys to unicode (without composite characters)
-		private static readonly byte[] _bytes = Encoding.Unicode.GetBytes("Hello, world!".PadLeft(UnicodeLength));
-		private static readonly byte[] _sameBytes = Encoding.Unicode.GetBytes("Hello, world!".PadLeft(UnicodeLength));
-		private static readonly byte[] _otherBytes = Encoding.Unicode.GetBytes("Emm?".PadLeft(UnicodeLength));
-
-		private static readonly ulong[] _uint64 = ToUInt64Array(_bytes);
-		private static readonly ulong[] _sameUInt64 = ToUInt64Array(_sameBytes);
-		private static readonly ulong[] _otherUInt64 = ToUInt64Array(_otherBytes);
-
-		private static void TestCore(
-			Func<byte[], byte[], bool> comparer,
-			Func<ulong[], ulong[], bool> ulongComparer = null)
-		{
-			if (comparer != null)
-			{
-				var algName = comparer.Method.Name;
-				Assert.True(
-					comparer(_bytes, _bytes),
-					algName + nameof(_bytes));
-				Assert.True(
-					comparer(_sameBytes, _sameBytes),
-					algName + nameof(_sameBytes));
-				Assert.True(
-					comparer(_otherBytes, _otherBytes),
-					algName + nameof(_otherBytes));
-				Assert.True(
-					comparer(_bytes, _sameBytes),
-					algName + nameof(_bytes) + nameof(_sameBytes));
-				Assert.False(
-					comparer(_bytes, _otherBytes),
-					algName + nameof(_bytes) + nameof(_otherBytes));
-			}
-
-			if (ulongComparer != null)
-			{
-				var algName = ulongComparer.Method.Name;
-				Assert.True(
-					ulongComparer(_uint64, _uint64),
-					algName + nameof(_uint64));
-				Assert.True(
-					ulongComparer(_sameUInt64, _sameUInt64),
-					algName + nameof(_sameUInt64));
-				Assert.True(
-					ulongComparer(_otherUInt64, _otherUInt64),
-					algName + nameof(_otherUInt64));
-				Assert.True(
-					ulongComparer(_uint64, _sameUInt64),
-					algName + nameof(_uint64) + nameof(_sameUInt64));
-				Assert.False(
-					ulongComparer(_uint64, _otherUInt64),
-					algName + nameof(_uint64) + nameof(_otherUInt64));
-			}
-		}
-
-		[Test]
-		public static void TestEqualsForLoop() => TestCore(
-			ByteArrayEquality.EqualsForLoop, ByteArrayEquality.EqualsUInt64ForLoop);
-
-		[Test]
-		public static void TestEqualsHardcoded() => TestCore(
-			null, ByteArrayEquality.EqualsUInt64Hardcoded);
-
-		[Test]
-		public static void TestEqualsLinq() => TestCore(
-			ByteArrayEquality.EqualsLinq, ByteArrayEquality.EqualsUInt64Linq);
-
-		[Test]
-		public static void TestEqualsCodeJam() => TestCore(
-			ByteArrayEquality.EqualsCodeJam, ByteArrayEquality.EqualsUInt64CodeJam);
-
-		[Test]
-		public static void TestEqualsVectors() => TestCore(
-			ByteArrayEquality.EqualsVectors, ByteArrayEquality.EqualsUInt64Vectors);
-
-		[Test]
-		public static void TestEqualsUnsafe() => TestCore(
-			ByteArrayEquality.EqualsUnsafe);
-
-		[Test]
-		public static void TestEqualsInterop() => TestCore(
-			ByteArrayEquality.EqualsInterop);
-	}
-
 	[SuppressMessage("ReSharper", "ConvertMethodToExpressionBody")]
 	[SuppressMessage("ReSharper", "RedundantCast")]
 	public static class ByteArrayEquality

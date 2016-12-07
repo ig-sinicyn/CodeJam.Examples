@@ -3,7 +3,7 @@ configuration: Release
 image: Visual Studio 2017 RC
 
 environment:
-  packageVersion: 0.0
+  packageVersion: 0.0.1
 
 cache:
 - packages -> **\packages.config
