@@ -36,8 +36,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BenchmarkDotNet.Core, Version=0.10.0.0, Culture=neutral, PublicKeyToken=aa0ca2f9092cefc4, processorArchitecture=MSIL">
-      <HintPath>..\packages\BenchmarkDotNet.Core.0.10.0\lib\net45\BenchmarkDotNet.Core.dll</HintPath>
+    <Reference Include="BenchmarkDotNet.Core, Version=0.10.1.0, Culture=neutral, PublicKeyToken=aa0ca2f9092cefc4, processorArchitecture=MSIL">
+      <HintPath>..\packages\BenchmarkDotNet.Core.0.10.1\lib\net45\BenchmarkDotNet.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CodeJam, Version=1.1.0.0, Culture=neutral, PublicKeyToken=7662d8fd5b220919, processorArchitecture=MSIL">
@@ -45,11 +45,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="CodeJam.PerfTests, Version=1.1.0.0, Culture=neutral, PublicKeyToken=7662d8fd5b220919, processorArchitecture=MSIL">
-      <HintPath>..\packages\CodeJam.PerfTests.Core.0.0.9-alpha\lib\net46\CodeJam.PerfTests.dll</HintPath>
+      <HintPath>..\packages\CodeJam.PerfTests.Core.0.0.10-beta\lib\net46\CodeJam.PerfTests.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CodeJam.PerfTests.NUnit, Version=1.1.0.0, Culture=neutral, PublicKeyToken=7662d8fd5b220919, processorArchitecture=MSIL">
-      <HintPath>..\packages\CodeJam.PerfTests.NUnit.0.0.9-alpha\lib\net46\CodeJam.PerfTests.NUnit.dll</HintPath>
+      <HintPath>..\packages\CodeJam.PerfTests.NUnit.0.0.10-beta\lib\net46\CodeJam.PerfTests.NUnit.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
