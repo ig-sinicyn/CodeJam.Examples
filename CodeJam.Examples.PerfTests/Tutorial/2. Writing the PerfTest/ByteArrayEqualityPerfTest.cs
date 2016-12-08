@@ -41,13 +41,13 @@ namespace CodeJam.Examples.PerfTests.Tutorial
 		[CompetitionBaseline]
 		public bool EqualsForLoop() => ByteArrayEquality.EqualsForLoop(_arrayA, _arrayB);
 
-		[CompetitionBenchmark(12.17, 16.44)]
+		[CompetitionBenchmark(12.17, 21.48)]
 		public bool EqualsLinq() => ByteArrayEquality.EqualsLinq(_arrayA, _arrayB);
 
-		[CompetitionBenchmark(0.11, 0.15)]
+		[CompetitionBenchmark(0.10, 0.15)]
 		public bool EqualsCodeJam() => ByteArrayEquality.EqualsCodeJam(_arrayA, _arrayB);
 
-		[CompetitionBenchmark(0.18, 2.57)]
+		[CompetitionBenchmark(0.11, 2.57)]
 		public bool EqualsVectors() => ByteArrayEquality.EqualsVectors(_arrayA, _arrayB);
 
 		[CompetitionBenchmark(0.16, 0.27)]
@@ -59,16 +59,16 @@ namespace CodeJam.Examples.PerfTests.Tutorial
 		[CompetitionBenchmark(0.17, 0.24)]
 		public bool EqualsUInt64ForLoop() => ByteArrayEquality.EqualsUInt64ForLoop(_arrayA2, _arrayB2);
 
-		[CompetitionBenchmark(1.97, 2.38)]
+		[CompetitionBenchmark(1.97, 3.40)]
 		public bool EqualsUInt64Linq() => ByteArrayEquality.EqualsUInt64Linq(_arrayA2, _arrayB2);
 
-		[CompetitionBenchmark(0.12, 0.17)]
+		[CompetitionBenchmark(0.10, 0.17)]
 		public bool EqualsUInt64Hardcoded() => ByteArrayEquality.EqualsUInt64Hardcoded(_arrayA2, _arrayB2);
 
 		[CompetitionBenchmark(0.09, 0.15)]
 		public bool EqualsUInt64CodeJam() => ByteArrayEquality.EqualsUInt64CodeJam(_arrayA2, _arrayB2);
 
-		[CompetitionBenchmark(0.16, 1.45)]
+		[CompetitionBenchmark(0.12, 1.45)]
 		public bool EqualsUInt64Vectors() => ByteArrayEquality.EqualsUInt64Vectors(_arrayA2, _arrayB2);
 	}
 }
