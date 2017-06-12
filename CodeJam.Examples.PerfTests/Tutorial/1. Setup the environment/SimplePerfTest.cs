@@ -20,14 +20,14 @@ namespace CodeJam.Examples.PerfTests.Tutorial
 		// (Visual Studio collapses regions by default).
 		#region Helpers
 		// Constants / fields
-		private static readonly int _count = CompetitionHelpers.RecommendedSpinCount;
+		private static readonly int _count = CompetitionRunHelpers.BurstModeLoopCount;
 
 		// Optional setup method. Same as in BenchmarkDotNet.
-		[Setup]
+		[GlobalSetup]
 		public void Setup() { /* We have nothing to do here. */ }
 
 		// Optional cleanup method. Same as in BenchmarkDotNet.
-		[Cleanup]
+		[GlobalCleanup]
 		public void Cleanup() { /* We have nothing to do here. */ }
 		#endregion
 
@@ -36,20 +36,24 @@ namespace CodeJam.Examples.PerfTests.Tutorial
 		[Test]
 		public void RunSimplePerfTest() => Competition.Run(this);
 
-		// Baseline competition member. Other competition members will be compared with this.
+		// Baseline competition member. Other competition members will be compared with this. Does not allocate.
 		[CompetitionBaseline]
+		[GcAllocations(0)]
 		public void Baseline() => Thread.SpinWait(_count);
 
-		// Competition member #1. Should take ~3x more time to run.
+		// Competition member #1. Should take ~3x more time to run. Does not allocate.
 		[CompetitionBenchmark(2.88, 3.12)]
+		[GcAllocations(0)]
 		public void SlowerX3() => Thread.SpinWait(3 * _count);
 
-		// Competition member #2. Should take ~5x more time to run.
+		// Competition member #2. Should take ~5x more time to run. Does not allocate.
 		[CompetitionBenchmark(4.80, 5.20)]
+		[GcAllocations(0)]
 		public void SlowerX5() => Thread.SpinWait(5 * _count);
 
-		// Competition member #3. Should take ~7x more time to run.
+		// Competition member #3. Should take ~7x more time to run. Does not allocate.
 		[CompetitionBenchmark(6.72, 7.28)]
+		[GcAllocations(0)]
 		public void SlowerX7() => Thread.SpinWait(7 * _count);
 	}
 }

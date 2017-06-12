@@ -21,7 +21,7 @@ namespace CodeJam.Examples.PerfTests.Tutorial
 		private ulong[] _arrayA2;
 		private ulong[] _arrayB2;
 
-		[Setup]
+		[GlobalSetup]
 		public void Setup()
 		{
 			// Constant rnd seed to get repeatable results
@@ -39,36 +39,47 @@ namespace CodeJam.Examples.PerfTests.Tutorial
 		public void RunByteArrayEqualityPerfTest() => Competition.Run(this);
 
 		[CompetitionBaseline]
+		[GcAllocations(0)]
 		public bool EqualsForLoop() => ByteArrayEquality.EqualsForLoop(_arrayA, _arrayB);
 
 		[CompetitionBenchmark(12.17, 22.79)]
+		[GcAllocations(64, BinarySizeUnit.Byte)]
 		public bool EqualsLinq() => ByteArrayEquality.EqualsLinq(_arrayA, _arrayB);
 
-		[CompetitionBenchmark(0.10, 0.15)]
+		[CompetitionBenchmark(0.097, 0.150)]
+		[GcAllocations(0)]
 		public bool EqualsCodeJam() => ByteArrayEquality.EqualsCodeJam(_arrayA, _arrayB);
 
 		[CompetitionBenchmark(0.11, 2.57)]
+		[GcAllocations(0)]
 		public bool EqualsVectors() => ByteArrayEquality.EqualsVectors(_arrayA, _arrayB);
 
 		[CompetitionBenchmark(0.16, 0.27)]
+		[GcAllocations(0)]
 		public bool EqualsUnsafe() => ByteArrayEquality.EqualsUnsafe(_arrayA, _arrayB);
 
-		[CompetitionBenchmark(0.16, 0.41)]
+		[CompetitionBenchmark(0.150, 0.410)]
+		[GcAllocations(0)]
 		public bool EqualsInterop() => ByteArrayEquality.EqualsInterop(_arrayA, _arrayB);
 
-		[CompetitionBenchmark(0.17, 0.24)]
+		[CompetitionBenchmark(0.166, 0.240)]
+		[GcAllocations(0)]
 		public bool EqualsUInt64ForLoop() => ByteArrayEquality.EqualsUInt64ForLoop(_arrayA2, _arrayB2);
 
 		[CompetitionBenchmark(1.97, 3.40)]
+		[GcAllocations(64, BinarySizeUnit.Byte)]
 		public bool EqualsUInt64Linq() => ByteArrayEquality.EqualsUInt64Linq(_arrayA2, _arrayB2);
 
 		[CompetitionBenchmark(0.09, 0.17)]
+		[GcAllocations(0)]
 		public bool EqualsUInt64Hardcoded() => ByteArrayEquality.EqualsUInt64Hardcoded(_arrayA2, _arrayB2);
 
 		[CompetitionBenchmark(0.09, 0.15)]
+		[GcAllocations(0)]
 		public bool EqualsUInt64CodeJam() => ByteArrayEquality.EqualsUInt64CodeJam(_arrayA2, _arrayB2);
 
 		[CompetitionBenchmark(0.11, 1.45)]
+		[GcAllocations(0)]
 		public bool EqualsUInt64Vectors() => ByteArrayEquality.EqualsUInt64Vectors(_arrayA2, _arrayB2);
 	}
 }

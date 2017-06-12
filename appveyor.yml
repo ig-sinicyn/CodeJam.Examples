@@ -1,6 +1,6 @@
 version: 0.0.{build}
 configuration: Release
-image: Visual Studio 2017 RC
+image: Visual Studio 2017
 
 environment:
   packageVersion: 0.0.1
@@ -35,5 +35,5 @@ build:
 
 # artifacts for perftests
 on_finish:
-  - ps: Get-ChildItem *.csv -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+#  - ps: Get-ChildItem *.csv -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
   - ps: Get-ChildItem *.PerfTests.log -r | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
